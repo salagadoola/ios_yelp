@@ -8,6 +8,9 @@
 
 #import "MainViewController.h"
 #import "YelpClient.h"
+#import "Business.h"
+#import "BusinessCell.h"
+#import "FiltersViewController.h"
 
 NSString * const kYelpConsumerKey = @"vxKwwcR_NMQ7WaEiQBK_CA";
 NSString * const kYelpConsumerSecret = @"33QCvh5bIF5jIHR5klQr7RtBDhQ";
@@ -17,6 +20,16 @@ NSString * const kYelpTokenSecret = @"mqtKIxMIR4iBtBPZCmCLEb-Dz3Y";
 @interface MainViewController ()
 
 @property (nonatomic, strong) YelpClient *client;
+@property (nonatomic, strong) NSMutableArray * businesses;
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (nonatomic, strong) BusinessCell *prototypeBusinessCell;
+@property (nonatomic, strong) UISearchBar *searchBar;
+@property (nonatomic, strong) FiltersViewController *filterVC;
+@property (nonatomic ,assign) BOOL infiniteLoading;
+@property (nonatomic, strong) NSMutableDictionary *filters;
+
+- (void)onFilterButton;
+- (void)fetchBusinessesWithQuery:(NSString *)query params:(NSDictionary *)params;
 
 @end
 
