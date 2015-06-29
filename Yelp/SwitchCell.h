@@ -8,6 +8,14 @@
 
 #import <UIKit/UIKit.h>
 
-@interface SwitchCell : UITableViewCell
+@class SwitchCell;
+@protocol SwitchCellDelegate <NSObject>
+- (void)switchCell:(SwitchCell *)cell didUpdateValue:(BOOL)value;
+@end
 
+@interface SwitchCell : UITableViewCell
+@property (weak, nonatomic) IBOutlet UILabel *titleLabel;
+@property (nonatomic, assign) BOOL on;
+@property (nonatomic, weak) id<SwitchCellDelegate> delegate; // delegate has to use weak reference
+- (void)setOn:(BOOL)on animated:(BOOL)animated;
 @end
